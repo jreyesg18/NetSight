@@ -3,5 +3,9 @@ services:
     build: .
     container_name: netsight-app
     restart: unless-stopped
-    ports:
-      - "8501:8501"
+    networks:
+      - nginx-proxy_default
+
+networks:
+  nginx-proxy_default:
+    external: true
