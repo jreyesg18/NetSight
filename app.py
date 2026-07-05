@@ -106,7 +106,7 @@ def _render_errors_and_warnings(result: dict) -> None:
 # ---------------------------------------------------------------------
 # Encabezado
 # ---------------------------------------------------------------------
-st.title("🔍 NetSight")
+st.title(" NetSight")
 st.caption(
     "Análisis heurístico de dominios y sitios web — DNS, WHOIS, SSL, puertos, "
     "headers de seguridad y tecnologías. 100% librerías nativas de Python."
@@ -127,7 +127,7 @@ with input_col:
 with button_col:
     st.write("")  # espaciador para alinear el botón con el input
     st.write("")
-    analizar_clicked = st.button("🚀 Analizar", type="primary", width="stretch")
+    analizar_clicked = st.button(" Analizar", type="primary", width="stretch")
 
 port_start, port_end = st.slider(
     "Rango de puertos a escanear",
@@ -140,7 +140,7 @@ st.caption(
     f"Rangos más grandes se truncan automáticamente."
 )
 
-with st.expander("⚙️ Opciones avanzadas"):
+with st.expander("️ Opciones avanzadas"):
     adv_col1, adv_col2 = st.columns(2)
     with adv_col1:
         max_threads = st.number_input(
@@ -309,7 +309,7 @@ else:
     st.subheader("Resultados detallados")
 
     # --- DNS ---
-    with st.expander("🌐 DNS", expanded=False):
+    with st.expander(" DNS", expanded=False):
         _render_errors_and_warnings(dns_result)
         if dns_result.get("success"):
             col1, col2, col3 = st.columns(3)
@@ -355,7 +355,7 @@ else:
     st.divider()
 
     # --- Propagación DNS ---
-    with st.expander("🌍 Propagación DNS", expanded=False):
+    with st.expander(" Propagación DNS", expanded=False):
         _render_errors_and_warnings(propagation_result)
         if propagation_result.get("success"):
             if propagation_result.get("is_consistent"):
@@ -385,7 +385,7 @@ else:
     st.divider()
 
     # --- WHOIS ---
-    with st.expander("📋 WHOIS", expanded=False):
+    with st.expander(" WHOIS", expanded=False):
         _render_errors_and_warnings(whois_result)
         if whois_result.get("success"):
             col1, col2 = st.columns(2)
@@ -416,7 +416,7 @@ else:
     st.divider()
 
     # --- SSL --- (abierto por defecto: suele traer los hallazgos más accionables)
-    with st.expander("🔒 SSL", expanded=True):
+    with st.expander(" SSL", expanded=True):
         _render_errors_and_warnings(ssl_result)
 
         # Nota SSL propia (A+ a F), calculada por modules/ssl_grade.py a
@@ -468,7 +468,7 @@ else:
     st.divider()
 
     # --- Puertos ---
-    with st.expander("🔌 Puertos", expanded=False):
+    with st.expander(" Puertos", expanded=False):
         _render_errors_and_warnings(port_result)
         if port_result.get("success"):
             st.write(
@@ -491,7 +491,7 @@ else:
     # --- Headers --- (abierto por defecto: suele traer hallazgos accionables)
     # Nota: usamos st.container(border=True) en vez de st.expander por header
     # porque Streamlit no permite anidar expanders dentro de otro expander.
-    with st.expander("🛡️ Headers", expanded=True):
+    with st.expander("️ Headers", expanded=True):
         _render_errors_and_warnings(headers_result)
         if headers_result.get("success"):
             st.progress(
@@ -511,7 +511,7 @@ else:
     # --- Tecnologías ---
     # Nota: usamos st.container(border=True) en vez de st.expander por
     # tecnología porque Streamlit no permite anidar expanders.
-    with st.expander("🧩 Tecnologías", expanded=False):
+    with st.expander(" Tecnologías", expanded=False):
         _render_errors_and_warnings(tech_result)
         if tech_result.get("success"):
             detected = tech_result.get("detected_technologies") or []
@@ -520,7 +520,7 @@ else:
             else:
                 for tech in detected:
                     with st.container(border=True):
-                        st.markdown(f"**🧩 {tech['name']}** _{tech['category']}_")
+                        st.markdown(f"** {tech['name']}** _{tech['category']}_")
                         for ev in tech["evidence"]:
                             if ev["method"] == "header":
                                 st.write(
@@ -543,7 +543,7 @@ else:
     export_filename = f"netsight_{safe_target}_{datetime.now().strftime('%Y%m%d')}.json"
 
     st.download_button(
-        label="📥 Descargar reporte en JSON",
+        label=" Descargar reporte en JSON",
         data=export_json,
         file_name=export_filename,
         mime="application/json",
@@ -555,7 +555,7 @@ else:
 # ---------------------------------------------------------------------
 st.divider()
 st.warning(
-    "⚠️ **Aviso legal:** Esta herramienta debe usarse únicamente sobre dominios/IPs "
+    "️ **Aviso legal:** Esta herramienta debe usarse únicamente sobre dominios/IPs "
     "de tu propiedad o con autorización explícita del propietario. El escaneo de "
     "puertos y otras técnicas de reconocimiento sin autorización pueden ser ilegales "
     "en tu jurisdicción."
