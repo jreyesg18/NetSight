@@ -1,0 +1,7 @@
+services:
+  netsight:
+    build: .
+    container_name: netsight-app
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
