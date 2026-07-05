@@ -1,0 +1,6 @@
+streamlit
+dnspython
+python-whois
+python-dateutil
+requests
+plotly
